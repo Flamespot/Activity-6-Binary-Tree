@@ -1,0 +1,19 @@
+
+public class Driver
+{
+	public static void main(String args[])
+	{
+		String a = "z";
+		String b = "y";
+		String c = "x";
+		StringTree st = new StringTree();
+
+		st.addString(a);
+		st.addString(b);
+		//st.addString(c);
+		
+		st.traverseWithRecursion(st.getRoot());
+		st.traverseWithStack();
+	}
+
+}
