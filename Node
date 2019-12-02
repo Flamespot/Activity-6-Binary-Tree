@@ -1,0 +1,23 @@
+
+public class Node
+{
+	private String val;
+	private Node left;
+	private Node right;
+	private Node parent;
+
+	public Node(String s)
+	{
+		val = s;
+	}
+
+	public Node getLeft() {return left;}
+	public Node getRight() {return right;}
+	public void setLeft(Node l) {left = l;}
+	public void setRight(Node r) {right = r;}
+	public String getVal() {return val;}
+	public void setParent(Node p) {parent = p;}
+	public Node getParent() {return parent;}
+
+
+}
