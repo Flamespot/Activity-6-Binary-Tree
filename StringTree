@@ -1,0 +1,96 @@
+import java.util.Stack;
+
+public class StringTree
+{
+	private Node root;
+
+	public StringTree()
+	{
+		root = null;
+	}
+	
+	public Node getRoot() {return root;}
+
+	public void addString(String str)
+	{
+		root = addStringToSubtree(str, root);
+	}
+	/**
+	 * Adds a String to the subtree with the given root node
+	 */
+	private Node addStringToSubtree(String str, Node root)
+	{
+		//Base Case: if the tree is empty return reference to a new node
+		//Recursive Part: Otherwise recursively go down in the tree
+		Node temp = new Node(str);
+		if (root == null)
+		{
+			root = temp;
+			return root;
+		}
+		if (str.compareTo(root.getVal()) < 0)
+		{
+			root.setLeft(addStringToSubtree(str, root.getLeft()));
+		}
+		else if (str.compareTo(root.getVal()) > 0)
+		{
+			root.setRight(addStringToSubtree(str, root.getRight()));
+		}
+		return root;
+	}
+
+	public void traverseWithRecursion(Node t)
+	{
+		if( t != null )
+	    {
+		  traverseWithRecursion(t.getLeft());
+	      System.out.println(t.getVal());
+	      traverseWithRecursion(t.getRight());
+	    }
+		
+		/// just my work for other ideas, don't grade commented out please
+		/*if (root == null) {}
+		if (root.getLeft() == null) {}
+		else
+		{
+			/// get left side
+			Node temp = root.getLeft();
+			Node tparent = root;
+
+			while(temp.getLeft() != null)
+			{
+				tparent = temp;
+				temp = temp.getLeft();
+			}
+			System.out.println(temp.getVal());
+
+			/// get right side
+			// might not work in trying to find parent of parent; try a
+			// on how deep the tree is then subtract after a parent checked
+			//itself, left, and right
+		}*/
+	}
+
+	public void traverseWithStack()
+	{
+		Stack nodes = new Stack<>();
+	    Node current = root;
+
+	    while (!nodes.isEmpty() || current != null) 
+	    {
+
+	      if (current != null) 
+	      {
+	        nodes.push(current);
+	        current = current.getLeft();
+	      } 
+	      else 
+	      {
+	        Node node = (Node)nodes.pop();
+	        System.out.println(node.getVal());
+	        current = node.getRight();
+	      }
+
+	    }
+	}
+}
